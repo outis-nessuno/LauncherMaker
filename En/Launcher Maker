@@ -1,0 +1,142 @@
+#!/bin/bash
+#~ Author: Outis
+#~ Site: http://outis.altervista.org
+#~ Mail: outis@altervista.org
+#~ CopyLeft: CC BY-NC-SA (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+#~ Version: 1.0
+#~ Date: 25/02/2012
+#~ Dependences: Zenity (Created on Ubuntu 11.10 with Nautilus 3.2.1 and Zenity 3.2.0)
+
+# Set the firts part of the title of zenity dialog boxes
+SCRIPT_NAME=$(basename "$0")
+# Icon displayed
+WINDOW_ICON="question"
+
+# Standard min dimensions aplied to many of the dialogs
+ZEN_WIDTH_STANDARD=350
+ZEN_HEIGHT_STANDARD=100
+ZEN_WIDTH_INFO=800
+ZEN_HEIGHT_INFO=300
+ZEN_WIDTH_EDIT=500
+ZEN_HEIGHT_EDIT=350
+
+# Text var for translations
+ZEN_INFO_TITLE="Informations"
+ZEN_INFO_TEXT="Launcher Maker\n------------------------\nAuthor: Outis\nSite: http://outis.altervista.org\nMail: outis@altervista.org\nCopyLeft: CC BY-NC-SA (http://creativecommons.org/licenses/by-nc-sa/3.0/)\nVersion: 1.0\nDate: 25/02/2012\nDependences: Zenity (Created on Ubuntu 11.10 with Nautilus 3.2.1 and Zenity 3.2.0)\n------------------------\nThis script helps to create launchers, assisting in the compilation of a text file *.desktop according to the standards (http://standards.freedesktop.org/desktop-entry-spec/latest/).\n\nTo simplify the process, it only implements basic functionality, for advanced uses I advise to change manually the launcher with a text editor.\n\nI especially suggest, for those interested, the opportunity to delve:\n• Addition of different locales to each field (According to the standards provided).\n• Entering the launcher to the list of applications (~/.local/share/applications/).\n• Adding the launcher to the dock in Unity with shortcuts to related commands (X-Ayatana-Desktop-Shortcuts); (Note: only applications launchers can appear in the dock, but to emulate links just enter the command "xdg-open { file | URL }").\n\nI want to point that this script was created as a personal utility without testing or warranties, so possible faults or damage are responsibility of the user."
+ZEN_INFO_CONTINUE="Continue"
+ZEN_INFO_EXIT="Exit"
+ZEN_NAME_TITLE="Name"
+ZEN_NAME_TEXT="Give a name to the launcher."
+ZEN_COMMENT_TITLE="Comment"
+ZEN_COMMENT_TEXT="Leave a comment."
+ZEN_ICON_TITLE="Icon"
+ZEN_ICON_TEXT_1="How to choose the icon?"
+ZEN_ICON_SELECT="Select File"
+ZEN_ICON_MANUAL="Enter Manually"
+ZEN_ICON_IMG_FILTER="*.jpg *.png *.gif *.svg"
+ZEN_ICON_TEXT_2="Enter the name of a standard icon\nor the complete path to an image."
+ZEN_TYPE_TITLE="Type"
+ZEN_TYPE_TEXT="Select the type of the launcher."
+ZEN_TYPE_APPLICATION="Application"
+ZEN_TYPE_LINK="Link"
+ZEN_COMMAND_TITLE="Command"
+ZEN_COMMAND_TEXT_1="How to enter the command?"
+ZEN_COMMAND_SELECT="Select Executable File"
+ZEN_COMMAND_MANUAL="Enter Manually"
+ZEN_COMMAND_TEXT_2="Enter the path where the commands are executed."
+ZEN_COMMAND_TEXT_3="Enter a command or the path of an executable file."
+ZEN_TERMINAL_TITLE="Terminal"
+ZEN_TERMINAL_TEXT="Application to run in the terminal?"
+ZEN_TERMINAL_TERMINAL="Terminal"
+ZEN_TERMINAL_GRAPHIC="Graphic"
+ZEN_LINK_TITLE="Link"
+ZEN_LINK_TEXT_1="How to enter the link?"
+ZEN_LINK_SELECT="Select File"
+ZEN_LINK_MANUAL="Enter Manually"
+ZEN_LINK_TEXT_2="Enter a valid path or URL."
+ZEN_EDIT_TITLE="Edit manually"
+ZEN_EDIT_CONFIRM="Confirm"
+ZEN_EDIT_DISCARD="Discard Modification"
+ZEN_SAVE_TITLE="Save"
+
+### Begining of the real script
+
+echo -ne "$ZEN_INFO_TEXT" | zenity --text-info --ok-label="$ZEN_INFO_CONTINUE" --cancel-label="$ZEN_INFO_EXIT" --width=$ZEN_WIDTH_INFO --height=$ZEN_HEIGHT_INFO --font=monospace --title="$SCRIPT_NAME - $ZEN_INFO_TITLE" --window-icon="$WINDOW_ICON"
+# 0 Continue, 1 Abort
+if [ "$?" = "0" ]; then
+
+	# String of the *.desktop file
+	STR="#!/usr/bin/env xdg-open\n\n"
+	STR="$STR""[Desktop Entry]\n"
+	STR="$STR""Version=1.0\n"
+
+	NAME=$(zenity --entry --text="$ZEN_NAME_TEXT" --title="$SCRIPT_NAME - $ZEN_NAME_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
+	STR="$STR""Name=""$NAME""\n"
+
+	COMMENT=$(zenity --entry --text="$ZEN_COMMENT_TEXT" --title="$SCRIPT_NAME - $ZEN_COMMENT_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
+	STR="$STR""Comment=""$COMMENT""\n"
+
+	zenity --question --ok-label="$ZEN_ICON_SELECT" --cancel-label="$ZEN_ICON_MANUAL" --text="$ZEN_ICON_TEXT_1" --title="$SCRIPT_NAME - $ZEN_ICON_TITLE" --window-icon="$WINDOW_ICON"
+	# 0 Select, 1 Manual
+	if [ "$?" = "0" ]; then
+		ICON=$(zenity --file-selection --filename="$PWD/0" --file-filter="IMG | $ZEN_ICON_IMG_FILTER" --file-filter="ALL | *" --title="$SCRIPT_NAME - $ZEN_ICON_TITLE" --window-icon="$WINDOW_ICON")
+	else
+		ICON=$(zenity --entry --entry-text="$PWD/" --text="$ZEN_ICON_TEXT_2" --title="$SCRIPT_NAME  - $ZEN_ICON_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
+	fi
+	STR="$STR""Icon=""$ICON""\n"
+
+	zenity --question --ok-label="$ZEN_TYPE_APPLICATION" --cancel-label="$ZEN_TYPE_LINK" --text="$ZEN_TYPE_TEXT" --title="$SCRIPT_NAME - $ZEN_TYPE_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON"
+	# 0 Application, 1 Link
+	if [ "$?" = "0" ]; then
+
+		STR="$STR""Type=Application\n"
+
+		zenity --question --ok-label="$ZEN_COMMAND_SELECT" --cancel-label="$ZEN_COMMAND_MANUAL" --text="$ZEN_COMMAND_TEXT_1" --title="$SCRIPT_NAME - $ZEN_COMMAND_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON"
+		# 0 Select, 1 Manual
+		if [ "$?" = "0" ]; then
+			CMD=$(zenity --file-selection --filename="$PWD/0" --title="$SCRIPT_NAME - $ZEN_COMMAND_TITLE" --window-icon="$WINDOW_ICON")
+		else
+			PT=$(zenity --entry --entry-text="$PWD/" --text="$ZEN_COMMAND_TEXT_2" --title="$SCRIPT_NAME - $ZEN_COMMAND_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
+			STR="$STR""Path=""$PT""\n"
+			CMD=$(zenity --entry --text="$ZEN_COMMAND_TEXT_3" --title="$SCRIPT_NAME - $ZEN_COMMAND_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
+		fi
+		STR="$STR""Exec=""$CMD""\n"
+
+		zenity --question --ok-label="$ZEN_TERMINAL_TERMINAL" --cancel-label="$ZEN_TERMINAL_GRAPHIC" --text="$ZEN_TERMINAL_TEXT" --title="$SCRIPT_NAME - $ZEN_TERMINAL_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON"
+		# 0 Terminal, 1 Graphic
+		if [ "$?" = "0" ]; then
+			TERM="true"
+		else
+			TERM="false"
+		fi
+		STR="$STR""Terminal=""$TERM""\n"
+
+	else
+
+		STR="$STR""Type=Link\n"
+
+		zenity --question --ok-label="$ZEN_LINK_SELECT" --cancel-label="$ZEN_LINK_MANUAL" --text="$ZEN_LINK_TEXT_1" --title="$SCRIPT_NAME - $ZEN_LINK_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON"
+		# 0 Select, 1 Manual
+		if [ "$?" = "0" ]; then
+			URL="file://"$(zenity --file-selection --filename="$PWD/0" --title="$SCRIPT_NAME - $ZEN_LINK_TITLE" --window-icon="$WINDOW_ICON")
+		else
+			URL=$(zenity --entry --entry-text="file://$PWD/" --text="$ZEN_LINK_TEXT_2" --title="$SCRIPT_NAME - $ZEN_LINK_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
+		fi
+		STR="$STR""URL=""$URL""\n"
+
+	fi
+
+	EDIT=$(echo -ne "$STR" | zenity --text-info --editable --ok-label="$ZEN_EDIT_CONFIRM" --cancel-label="$ZEN_EDIT_DISCARD" --width=$ZEN_WIDTH_EDIT --height=$ZEN_HEIGHT_EDIT --font=monospace --title="$SCRIPT_NAME - $ZEN_EDIT_TITLE" --window-icon="$WINDOW_ICON")
+	# 0 Modify, 1 Continue
+	if [ "$?" = "0" ]; then
+		STR="$EDIT"
+	fi
+
+	FILE=$(zenity --file-selection --save --confirm-overwrite --filename="$PWD/$NAME.desktop" --file-filter="LAUNCHER | *.desktop" --file-filter="ALL | *" --title="$SCRIPT_NAME - $ZEN_SAVE_TITLE" --window-icon="$WINDOW_ICON")
+	# 0 Save, 1 Abort
+	if [ "$?" = "0" ]; then
+		echo -ne "$STR" > "$FILE"
+		chmod +x "$FILE"
+	fi
+
+fi

@@ -1,0 +1,31 @@
+<style>
+*{ font-family:monospace; font-size:14px; }
+h1{ text-align:center; font-size:25px; margin:15px 0; }
+</style>
+<h1>Launcher Maker</h1>
+<hr/>
+<pre>
+Author: Outis
+Site: http://outis.altervista.org
+Mail: outis@altervista.org
+CopyLeft: CC BY-NC-SA (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+Version: 1.0
+Date: 25/02/2012
+Dependences: Zenity (Created on Ubuntu 11.10 with Nautilus 3.2.1 and Zenity 3.2.0)
+</pre>
+<hr/>
+<p>
+This script helps to create launchers, assisting in the compilation of a text file *.desktop according to the standards (http://standards.freedesktop.org/desktop-entry-spec/latest/).
+</p>
+<p>
+To simplify the process, it only implements basic functionality, for advanced uses I advise to change manually the launcher with a text editor.
+</p>
+<p>
+I especially suggest, for those interested, the opportunity to delve:<br/>
+&bull; Addition of different locales to each field (According to the standards provided).<br/>
+&bull; Entering the launcher to the list of applications (~/.local/share/applications/).<br/>
+&bull; Adding the launcher to the dock in Unity with shortcuts to related commands (X-Ayatana-Desktop-Shortcuts); (Note: only applications launchers can appear in the dock, but to emulate links just enter the command "xdg-open { file | URL }").
+</p>
+<p>
+I want to point that this script was created as a personal utility without testing or warranties, so possible faults or damage are <b>responsibility of the user</ b>.
+</p>
