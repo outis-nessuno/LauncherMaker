@@ -4,7 +4,7 @@
 # Set the firts part of the title of zenity dialog boxes
 SCRIPT_NAME=$(basename "$0")
 
-# Icon displayed (Standard Zenity icon name or full path to an image)
+# Icon displayed in the dock/bar during script esecution (Standard Zenity icon name or full path to an image)
 WINDOW_ICON="question"
 
 # Standard min dimensions aplied to many of the dialogs
@@ -14,3 +14,6 @@ ZEN_WIDTH_INFO=800
 ZEN_HEIGHT_INFO=300
 ZEN_WIDTH_EDIT=500
 ZEN_HEIGHT_EDIT=350
+
+# Image filter for launcher icon selection (may be improved testing wich formats really work)
+ZEN_ICON_IMG_FILTER="*.jpg *.jpeg *.png *.gif *.giff *.svg *.xpm"
