@@ -1,0 +1,10 @@
+Questo script aiuta nella creazione di launcher, guidando nella compilazione di un file testuale *.desktop secondo gli standard (http://standards.freedesktop.org/desktop-entry-spec/latest/).
+
+Per semplicità implementa solamente funzionalità di base, per finalità avanzate consiglio, dunque, di procedere con una modifica manuale del lanciatore con un editor di testo.
+
+In particolare posso suggerire, a chi interessato, spunti di approfondimento:
+• Aggiunta di diversi locale per ciascun campo (Secondo gli standard forniti).
+• Inserimento del lanciatore all'elenco delle applicazioni (~/.local/share/applications/).
+• Aggiunta del lanciatore al dock di Unity con shortcut a comandi correlati (X-Ayatana-Desktop-Shortcuts); (Nota: solo i lanciatori di applicazioni possono comparire nel dock, ma per emulare i link basta inserire come comando "xdg-open { file | URL }").
+
+Ricordo che questo script è stato creato come utility personale senza test né garanzie, quindi possibili malfunzionamenti o danni sono responsabilità dell'utilizzatore.

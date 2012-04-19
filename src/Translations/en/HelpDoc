@@ -1,0 +1,10 @@
+This script helps to create launchers, assisting in the compilation of a text file *.desktop according to the standards (http://standards.freedesktop.org/desktop-entry-spec/latest/).
+
+To simplify the process, it only implements basic functionality, for advanced uses I advise to change manually the launcher with a text editor.
+
+I especially suggest, for those interested, the opportunity to delve:
+• Addition of different locales to each field (According to the standards provided).
+• Entering the launcher to the list of applications (~/.local/share/applications/).
+• Adding the launcher to the dock in Unity with shortcuts to related commands (X-Ayatana-Desktop-Shortcuts); (Note: only applications launchers can appear in the dock, but to emulate links just enter the command "xdg-open { file | URL }").
+
+I want to point that this script was created as a personal utility without testing or warranties, so possible faults or damage are responsibility of the user.
