@@ -13,7 +13,7 @@ h2. Info:
 
 h2. Description:
 
-This script helps to create launchers, assisting in the compilation of a text file *.desktop according to the standards (http://standards.freedesktop.org/desktop-entry-spec/latest/).
+This is a bash script (compatible with Nautilus), that helps to create launchers, assisting in the compilation of a text file *.desktop according to the standards (http://standards.freedesktop.org/desktop-entry-spec/latest/).
 
 To simplify the process, it only implements basic functionality, for advanced uses I advise to change manually the launcher with a text editor.
 
@@ -26,12 +26,24 @@ I want to point that this script was created as a personal utility without testi
 
 h2. How to use:
 
-# *Get the complete script:* you can find it already built from the download section of github in the top right of the page or on my website "http://outis.altervista.org/launchermaker/":http://outis.altervista.org/launchermaker/. Or you can get the full source code from the repository and build it yourself by running "build.sh".
-# *Install it:* copy and paste to the directory of nautilus scripts (Should be: "~/.gnome2/nautilus-scripts"). Make it executable (If necessary).
-# *Run it:* context-menu (Right click) on nautilus > Script > LauncherMaker. Then follow the guided steps.
+# *Get the complete script:* you can find it already built from the download section of github in the top right of the page or on my website "http://outis.altervista.org/launchermaker/":http://outis.altervista.org/launchermaker/. Or you can get the full source code from the repository and build it yourself by running "build.sh" (That will generate a "bin" folder containing the available translations).
+# *Install it:* make it executable (If necessary). Optional: copy and paste to the directory of Nautilus scripts (Should be: "~/.gnome2/nautilus-scripts") to integrate it with the file manager for the GNOME desktop.
+# *Run it:* double click it and, if asked, chose execute or launch it from the terminal or, if integrated with Nautilus, you can find it in the menu "File > Script > LauncherMaker". Then follow the guided steps.
 # *Celebrate:* you have a new utility, have fun! ;D
 
 h2. How to modify:
 
 It is a simple bash script, it is divided in logical almost self-explaining parts, it is commented and it is predisposed for translations...you shouldn't have any problems! So, get the repo and change what you want!
 If you make any useful improvement or bugfix, please share with the community: send me a mail so I can update!
+
+h2. How to help:
+
+Please contact me for bugs, suggestion, new/better translations or anything you think can be useful.
+
+h2. See also:
+
+* About launchers: "http://standards.freedesktop.org/desktop-entry-spec/latest/":http://standards.freedesktop.org/desktop-entry-spec/latest/
+* About Nautilus extensibility: "http://live.gnome.org/Nautilus/Extending":http://live.gnome.org/Nautilus/Extending
+* More Nautilus scripts: "http://g-scripts.sourceforge.net/":http://g-scripts.sourceforge.net/ and "http://gnome-look.org/index.php?xcontentmode=188":http://gnome-look.org/index.php?xcontentmode=188
+
+
