@@ -1,0 +1,37 @@
+h1. LauncherMaker
+
+h2. Info:
+
+|Version:|1.0|
+|Author:|Outis|
+|Site:|"http://outis.altervista.org/launchermaker/":http://outis.altervista.org/launchermaker/|
+|Mail:|"outis@altervista.org":mailto:outis@altervista.org|
+|CopyLeft:|CC BY-NC-SA ("http://creativecommons.org/licenses/by-nc-sa/3.0/":http://creativecommons.org/licenses/by-nc-sa/3.0/)|
+|Date:|25/02/2012|
+|Dependencies:|Zenity (Created on Ubuntu 11.10 with Nautilus 3.2.1 and Zenity 3.2.0)|
+|Warning:|+distributed "as is", *without warranties* of any kind, either expressed or implied.+|
+
+h2. Description:
+
+This script helps to create launchers, assisting in the compilation of a text file *.desktop according to the standards (http://standards.freedesktop.org/desktop-entry-spec/latest/).
+
+To simplify the process, it only implements basic functionality, for advanced uses I advise to change manually the launcher with a text editor.
+
+I especially suggest, for those interested, the opportunity to delve:
+* Addition of different locales to each field (According to the standards provided).
+* Entering the launcher to the list of applications (~/.local/share/applications/).
+* Adding the launcher to the dock in Unity with shortcuts to related commands (X-Ayatana-Desktop-Shortcuts); (Note: only applications launchers can appear in the dock, but to emulate links just enter the command "xdg-open { file | URL }").
+
+I want to point that this script was created as a personal utility without testing or warranties, so possible faults or damage are responsibility of the user.
+
+h2. How to use:
+
+# *Get the complete script:* you can find it already built from the download section of github in the top right of the page or on my website "http://outis.altervista.org/launchermaker/":http://outis.altervista.org/launchermaker/. Or you can get the full source code from the repository and build it yourself by running "build.sh".
+# *Install it:* copy and paste to the directory of nautilus scripts (Should be: "~/.gnome2/nautilus-scripts"). Make it executable (If necessary).
+# *Run it:* context-menu (Right click) on nautilus > Script > LauncherMaker. Then follow the guided steps.
+# *Celebrate:* you have a new utility, have fun! ;D
+
+h2. How to modify:
+
+It is a simple bash script, it is divided in logical almost self-explaining parts, it is commented and it is predisposed for translations...you shouldn't have any problems! So, get the repo and change what you want!
+If you make any useful improvement or bugfix, please share with the community: send me a mail so I can update!
