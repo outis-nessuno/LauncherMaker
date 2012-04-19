@@ -23,7 +23,7 @@ if [ "$?" = "0" ]; then
 	zenity --question --ok-label="$ZEN_ICON_SELECT" --cancel-label="$ZEN_ICON_MANUAL" --text="$ZEN_ICON_TEXT_1" --title="$SCRIPT_NAME - $ZEN_ICON_TITLE" --window-icon="$WINDOW_ICON"
 	# 0 Select, 1 Manual
 	if [ "$?" = "0" ]; then
-		ICON=$(zenity --file-selection --filename="$PWD/0" --file-filter="IMG | $ZEN_ICON_IMG_FILTER" --file-filter="ALL | *" --title="$SCRIPT_NAME - $ZEN_ICON_TITLE" --window-icon="$WINDOW_ICON")
+		ICON="\""$(zenity --file-selection --filename="$PWD/0" --file-filter="IMG | $ZEN_ICON_IMG_FILTER" --file-filter="ALL | *" --title="$SCRIPT_NAME - $ZEN_ICON_TITLE" --window-icon="$WINDOW_ICON")"\""
 	else
 		ICON=$(zenity --entry --entry-text="$PWD/" --text="$ZEN_ICON_TEXT_2" --title="$SCRIPT_NAME  - $ZEN_ICON_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
 	fi
@@ -40,7 +40,7 @@ if [ "$?" = "0" ]; then
 		zenity --question --ok-label="$ZEN_COMMAND_SELECT" --cancel-label="$ZEN_COMMAND_MANUAL" --text="$ZEN_COMMAND_TEXT_1" --title="$SCRIPT_NAME - $ZEN_COMMAND_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON"
 		# 0 Select, 1 Manual
 		if [ "$?" = "0" ]; then
-			CMD=$(zenity --file-selection --filename="$PWD/0" --title="$SCRIPT_NAME - $ZEN_COMMAND_TITLE" --window-icon="$WINDOW_ICON")
+			CMD="\""$(zenity --file-selection --filename="$PWD/0" --title="$SCRIPT_NAME - $ZEN_COMMAND_TITLE" --window-icon="$WINDOW_ICON")"\""
 		else
 			PT=$(zenity --entry --entry-text="$PWD/" --text="$ZEN_COMMAND_TEXT_2" --title="$SCRIPT_NAME - $ZEN_COMMAND_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
 			STR="$STR""Path=""$PT""\n"
@@ -67,7 +67,7 @@ if [ "$?" = "0" ]; then
 		zenity --question --ok-label="$ZEN_LINK_SELECT" --cancel-label="$ZEN_LINK_MANUAL" --text="$ZEN_LINK_TEXT_1" --title="$SCRIPT_NAME - $ZEN_LINK_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON"
 		# 0 Select, 1 Manual
 		if [ "$?" = "0" ]; then
-			URL="file://"$(zenity --file-selection --filename="$PWD/0" --title="$SCRIPT_NAME - $ZEN_LINK_TITLE" --window-icon="$WINDOW_ICON")
+			URL="\"""file://"$(zenity --file-selection --filename="$PWD/0" --title="$SCRIPT_NAME - $ZEN_LINK_TITLE" --window-icon="$WINDOW_ICON")"\""
 		else
 			URL=$(zenity --entry --entry-text="file://$PWD/" --text="$ZEN_LINK_TEXT_2" --title="$SCRIPT_NAME - $ZEN_LINK_TITLE" --width=$ZEN_WIDTH_STANDARD --height=$ZEN_HEIGHT_STANDARD --window-icon="$WINDOW_ICON")
 		fi
